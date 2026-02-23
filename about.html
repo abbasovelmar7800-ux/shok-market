@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haqqımızda - Şok Market</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#111;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* HEADER */
+header{
+  background:#ffd000;
+  padding:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+
+.menu-btn{
+  font-size:28px;
+  cursor:pointer;
+  color:black;
+  position:absolute;
+  left:20px;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:bold;
+  color:black;
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:260px;
+  height:100%;
+  background:#1a1a1a;
+  padding-top:80px;
+  transition:0.4s;
+  z-index:2000;
+}
+
+.sidebar.active{
+  left:0;
+}
+
+.sidebar a{
+  display:block;
+  padding:18px 25px;
+  color:#ffd000;
+  text-decoration:none;
+  font-size:18px;
+}
+
+.sidebar a:hover{
+  background:#ffd000;
+  color:black;
+}
+
+/* OVERLAY */
+.overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  z-index:1500;
+}
+
+.overlay.active{
+  display:block;
+}
+
+/* ABOUT */
+.about{
+  padding:80px 5%;
+  text-align:center;
+}
+
+.about h2{
+  font-size:35px;
+  margin-bottom:30px;
+  color:#ffd000;
+}
+
+.about p{
+  font-size:18px;
+  line-height:1.6;
+  margin-bottom:15px;
+}
+
+/* FOOTER */
+footer{
+  background:black;
+  color:#ffd000;
+  text-align:center;
+  padding:20px;
+}
+
+/* MOBİL */
+@media(max-width:768px){
+  .about h2{font-size:28px;}
+  .about p{font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <a href="index.html">Ana səhifə</a>
+  <a href="products.html">Endirimlər</a>
+  <a href="stores.html">Mağazalar</a>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<header>
+  <div class="menu-btn" id="menuBtn">☰</div>
+  <div class="logo">ŞOK MARKET</div>
+</header>
+
+<section class="about">
+  <h2>Haqqımızda</h2>
+  <p>
+    Şirkət rəhbəri <strong>Elvin Qasımov</strong> tərəfindən yaradılmış
+    Şok Market müştəri məmnuniyyətini ön planda tutur.
+  </p>
+  <p>
+    Endirim kampaniyaları və sərfəli qiymətlərlə xidmətinizdəyik.
+  </p>
+</section>
+
+<footer>
+  © 2026 Şok Market | Bütün hüquqlar qorunur
+</footer>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+
+menuBtn.addEventListener("click", function(){
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
+});
+
+overlay.addEventListener("click", function(){
+  sidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+</script>
+
+</body>
+</html>

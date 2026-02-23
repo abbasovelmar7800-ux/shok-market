@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Endirimlər - ŞOK Market</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#111,#222);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* HEADER */
+header{
+    background:#ffd400;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.menu-btn{
+    font-size:28px;
+    cursor:pointer;
+    color:black;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+    color:black;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:260px;
+    height:100%;
+    background:#1a1a1a;
+    padding-top:80px;
+    transform:translateX(-100%);
+    transition:0.4s ease;
+    z-index:2000;
+}
+
+.sidebar.active{
+    transform:translateX(0);
+}
+
+.sidebar a{
+    display:block;
+    padding:18px 25px;
+    color:#ffd400;
+    text-decoration:none;
+    font-size:18px;
+}
+
+.sidebar a:hover{
+    background:#ffd400;
+    color:black;
+}
+
+/* OVERLAY */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+    z-index:1500;
+}
+
+.overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* PRODUCTS */
+.products{
+    padding:60px 20px;
+    text-align:center;
+}
+
+.products h2{
+    color:#ffd400;
+    margin-bottom:40px;
+}
+
+.product-container{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap:20px;
+    max-width:800px;
+    margin:0 auto;
+}
+
+.product-card{
+    background:#1e1e1e;
+    border-radius:15px;
+    padding:15px;
+    transition:0.3s;
+}
+
+.product-card img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.product-card h3{
+    margin:12px 0 8px;
+    color:#ffd400;
+}
+
+.product-card p{
+    color:#ccc;
+}
+
+.product-card:hover{
+    transform:translateY(-6px);
+}
+</style>
+</head><link rel="stylesheet" href="style.css">
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <a href="about.html">Haqqımızda</a>
+  <a href="products.html">Endirimlər</a>
+  <a href="stores.html">Mağazalar</a>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<header>
+  <div class="menu-btn" id="menuBtn">☰</div>
+  <div class="logo">ŞOK MARKET</div>
+</header>
+
+<section class="products">
+    <h2>Endirimdə olan məhsullar</h2>
+
+    <div class="product-container">
+
+        <div class="product-card">
+            <img src="sekil1.jpg">
+            <h3>Şokolad</h3>
+            <p>Qiymət: 2.50 AZN</p>
+        </div>
+
+        <div class="product-card">
+            <img src="sekil2.jpg">
+            <h3>Şirə</h3>
+            <p>Qiymət: 1.20 AZN</p>
+        </div>
+
+        <div class="product-card">
+            <img src="sekil3.jpg">
+            <h3>Peçenye</h3>
+            <p>Qiymət: 3.00 AZN</p>
+        </div>
+
+        <div class="product-card">
+            <img src="sekil4.jpg">
+            <h3>Süd</h3>
+            <p>Qiymət: 1.80 AZN</p>
+        </div>
+
+    </div>
+</section>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+
+menuBtn.addEventListener("click", function(){
+  sidebar.classList.add("active");
+  overlay.classList.add("active");
+});
+
+overlay.addEventListener("click", function(){
+  sidebar.classList.remove("active");
+  overlay.classList.remove("active");
+});
+</script>
+
+</body>
+</html>
