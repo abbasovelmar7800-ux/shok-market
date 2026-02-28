@@ -25,7 +25,7 @@ header{
   padding:20px 5%;
   display:flex;
   align-items:center;
-  gap:20px; /* ☰ ilə logo arası məsafə */
+  gap:20px; /* logo ilə menu arası */
 }
 
 .menu-btn{
@@ -40,7 +40,7 @@ header{
   color:black;
 }
 
-/* SIDEBAR - SOLDAN */
+/* SIDEBAR - SOLDAN AÇILAN */
 .sidebar{
   position:fixed;
   top:0;
@@ -49,14 +49,14 @@ header{
   height:100%;
   background:#1a1a1a;
   padding-top:80px;
-  transform:translateX(-100%);
+  transform:translateX(-100%); /* soldan gizlənir */
   transition:transform 0.4s ease;
   z-index:2000;
   box-shadow:5px 0 20px rgba(0,0,0,0.6);
 }
 
 .sidebar.active{
-  transform:translateX(0);
+  transform:translateX(0); /* açıldıqda görünür */
 }
 
 .sidebar a{
@@ -139,8 +139,14 @@ footer{
   text-align:center;
   padding:20px;
 }
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero h1{font-size:28px;}
+  .hero p{font-size:16px;}
+}
 </style>
-</head><link rel="stylesheet" href="style.css">
+</head>
 <body>
 
 <!-- SIDEBAR -->
@@ -175,12 +181,12 @@ const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
 
 menuBtn.addEventListener("click", function(){
-  sidebar.classList.add("active");
-  overlay.classList.add("active");
+  sidebar.classList.toggle("active"); // soldan aç
+  overlay.classList.toggle("active"); // overlay göstər
 });
 
 overlay.addEventListener("click", function(){
-  sidebar.classList.remove("active");
+  sidebar.classList.remove("active"); // overlay kliklə bağla
   overlay.classList.remove("active");
 });
 </script>

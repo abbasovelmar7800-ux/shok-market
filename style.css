@@ -34,9 +34,9 @@ header{
     left:20px;
     top:50%;
     transform:translateY(-50%);
-    font-size:28px;
+    font-size:30px;
     cursor:pointer;
-    color:white; /* ağ fon üzərində görünür */
+    color:black;
 }
 
 /* ====== SIDEBAR ====== */
@@ -63,6 +63,7 @@ header{
     color:#ffd000;
     text-decoration:none;
     font-size:18px;
+    transition:0.3s;
 }
 
 .sidebar a:hover{
@@ -89,13 +90,12 @@ header{
     visibility:visible;
 }
 
-/* ====== SECTIONS ====== */
+/* ====== HERO / ABOUT / PRODUCTS / STORES ====== */
 section{
     padding:80px 5%;
     text-align:center;
 }
 
-/* H1 / H2 */
 h1,h2{
     color:#ffd000;
     margin-bottom:20px;
@@ -105,6 +105,46 @@ p{
     font-size:18px;
     line-height:1.6;
     margin-bottom:15px;
+}
+
+/* ====== HERO ====== */
+.hero{
+    height:90vh;
+    background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+    url('https://images.unsplash.com/photo-1604719312566-8912e9227c6a');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:22px;
+    margin-bottom:20px;
+}
+
+.hero button{
+    padding:15px 40px;
+    background:#f5ce24;
+    border:none;
+    color:black;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.hero button:hover{
+    background:white;
 }
 
 /* ====== PRODUCTS ====== */
@@ -178,9 +218,14 @@ footer{
 }
 
 /* ====== RESPONSIVE ====== */
-@media(max-width:600px){
-    header{flex-direction:column; align-items:center;}
-    .menu-btn{position:relative; left:0; margin-bottom:10px;}
+@media(max-width:768px){
     h1,h2{font-size:28px;}
     p{font-size:16px;}
+    .product-container{
+        grid-template-columns:1fr;
+    }
+    .store-card{
+        width:100%;
+        margin:10px 0;
+    }
 }
