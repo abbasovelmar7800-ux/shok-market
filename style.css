@@ -244,13 +244,8 @@ footer{
 
 /* ====== RESPONSIVE ====== */
 @media(max-width:768px){
-    h1,h2{font-size:28px;}
-    p{font-size:16px;}
-    .product-container{
-        grid-template-columns:1fr;
-    }
-    .store-card{
-        width:100%;
-        margin:10px 0;
-    }
+    .store-card{width:45%;}  /* yan-yana 2 ədəd card */
+}
+@media(max-width:480px){
+    .store-card{width:100%;} /* tək tək alt-alta */
 }
