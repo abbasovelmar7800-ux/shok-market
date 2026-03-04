@@ -3,159 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ŞOK Market</title>
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
-}
-
-body{
-  background:#111;
-  color:white;
-  overflow-x:hidden;
-}
-
-/* HEADER */
-header{
-  background:#c3a005;
-  padding:20px 5%;
-  display:flex;
-  align-items:center;
-  gap:20px; /* logo ilə menu arası */
-}
-
-.menu-btn{
-  font-size:30px;
-  cursor:pointer;
-  color:black;
-}
-
-.logo{
-  font-size:28px;
-  font-weight:bold;
-  color:black;
-}
-
-/* SIDEBAR - SOLDAN AÇILAN */
-.sidebar{
-  position:fixed;
-  top:0;
-  left:0;
-  width:260px;
-  height:100%;
-  background:#1a1a1a;
-  padding-top:80px;
-  transform:translateX(-100%); /* soldan gizlənir */
-  transition:transform 0.4s ease;
-  z-index:2000;
-  box-shadow:5px 0 20px rgba(0,0,0,0.6);
-}
-
-.sidebar.active{
-  transform:translateX(0); /* açıldıqda görünür */
-}
-
-.sidebar a{
-  display:block;
-  padding:18px 25px;
-  color:#eac10b;
-  text-decoration:none;
-  font-size:18px;
-  transition:0.3s;
-}
-
-.sidebar a:hover{
-  background:#c3a005;
-  color:black;
-}
-
-/* OVERLAY */
-.overlay{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  opacity:0;
-  visibility:hidden;
-  transition:0.3s;
-  z-index:1500;
-}
-
-.overlay.active{
-  opacity:1;
-  visibility:visible;
-}
-
-/* HERO */
-.hero{
-  height:90vh;
-  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
-  url('https://images.unsplash.com/photo-1604719312566-8912e9227c6a');
-  background-size:cover;
-  background-position:center;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:20px;
-}
-
-.hero h1{
-  font-size:55px;
-  margin-bottom:20px;
-  color:#eac10b;
-}
-
-.hero p{
-  font-size:22px;
-  margin-bottom:20px;
-}
-
-.hero button{
-  padding:15px 40px;
-  background:#f5ce24;
-  border:none;
-  color:black;
-  font-size:18px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
-  transition:.3s;
-}
-
-.hero button:hover{
-  background:white;
-}
-
-footer{
-  background:black;
-  color:#eac10b;
-  text-align:center;
-  padding:20px;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .hero h1{font-size:28px;}
-  .hero p{font-size:16px;}
-}
-</style>
+<title>ŞOK MARKET</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
-  <a href="about.html">Haqqımızda</a>
+  <a href="index.html">Ana səhifə</a>
   <a href="products.html">Endirimlər</a>
+  <a href="about.html">Haqqımızda</a>
   <a href="stores.html">Mağazalar</a>
 </div>
-
 <div class="overlay" id="overlay"></div>
 
 <header>
@@ -172,7 +30,7 @@ footer{
 </section>
 
 <footer>
-  © 2026 Şok Market | Bütün hüquqlar qorunur
+  © 2026 ŞOK MARKET | Bütün hüquqlar qorunur
 </footer>
 
 <script>
@@ -180,13 +38,13 @@ const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
 
-menuBtn.addEventListener("click", function(){
-  sidebar.classList.toggle("active"); // soldan aç
-  overlay.classList.toggle("active"); // overlay göstər
+menuBtn.addEventListener("click", ()=>{
+  sidebar.classList.toggle("active");
+  overlay.classList.toggle("active");
 });
 
-overlay.addEventListener("click", function(){
-  sidebar.classList.remove("active"); // overlay kliklə bağla
+overlay.addEventListener("click", ()=>{
+  sidebar.classList.remove("active");
   overlay.classList.remove("active");
 });
 </script>

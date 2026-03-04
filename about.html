@@ -4,10 +4,124 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Haqqımızda - ŞOK Market</title>
-<link rel="stylesheet" href="style.css">
+<style>
+/* ===== RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+body{
+    background:#111;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ===== HEADER ===== */
+header{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px 5%;
+    position:relative;
+    background:#ffd000;
+}
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:black;
+}
+.menu-btn{
+    position:absolute;
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:28px;
+    cursor:pointer;
+    color:black;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:260px;
+    height:100%;
+    background:#1a1a1a;
+    padding-top:80px;
+    transform:translateX(-100%);
+    transition:0.4s ease;
+    z-index:2000;
+}
+.sidebar.active{
+    transform:translateX(0);
+}
+.sidebar a{
+    display:block;
+    padding:18px 25px;
+    color:#ffd000;
+    text-decoration:none;
+    font-size:18px;
+    transition:0.3s;
+}
+.sidebar a:hover{
+    background:#ffd000;
+    color:black;
+}
+
+/* ===== OVERLAY ===== */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+    z-index:1500;
+}
+.overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* ===== SECTION ===== */
+section{
+    padding:80px 5%;
+    text-align:center;
+}
+h1,h2{
+    color:#ffd000;
+    margin-bottom:20px;
+}
+p{
+    font-size:16px;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+    background:black;
+    color:#ffd000;
+    text-align:center;
+    padding:20px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+    h1,h2{font-size:24px;}
+    p{font-size:14px;}
+}
+</style>
 </head>
 <body>
 
+<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
   <a href="index.html">Ana səhifə</a>
   <a href="products.html">Endirimlər</a>
@@ -16,23 +130,23 @@
 <div class="overlay" id="overlay"></div>
 
 <header>
-  <div class="menu-btn" id="menuBtn">☰</div>
-  <div class="logo">ŞOK MARKET</div>
+    <div class="menu-btn" id="menuBtn">☰</div>
+    <div class="logo">ŞOK MARKET</div>
 </header>
 
 <section>
-  <h2>Haqqımızda</h2>
-  <p>
-    Şirkət rəhbəri <strong>Elvin Qasımov</strong> tərəfindən yaradılmış
-    Şok Market müştəri məmnuniyyətini ön planda tutur.
-  </p>
-  <p>
-    Endirim kampaniyaları və sərfəli qiymətlərlə xidmətinizdə023
-  </p>
+    <h2>Haqqımızda</h2>
+    <p>
+        ŞOK Market, şirkət rəhbəri <strong>Elvin Qasımov</strong> tərəfindən yaradılmışdır. 
+        Məqsədimiz müştərilərimizə ən sərfəli qiymətlərlə keyfiyyətli məhsullar təqdim etməkdir.
+    </p>
+    <p>
+        Endirim kampaniyaları, müştəri məmnuniyyəti və geniş mağaza şəbəkəsi ilə xidmətinizdəyik.
+    </p>
 </section>
 
 <footer>
-  © 2026 Şok Market | Bütün hüquqlar qorunur
+    © 2026 ŞOK Market | Bütün hüquqlar qorunur
 </footer>
 
 <script>
@@ -41,12 +155,12 @@ const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
 
 menuBtn.addEventListener("click", ()=>{
-  sidebar.classList.add("active");
-  overlay.classList.add("active");
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
 });
 overlay.addEventListener("click", ()=>{
-  sidebar.classList.remove("active");
-  overlay.classList.remove("active");
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
 });
 </script>
 

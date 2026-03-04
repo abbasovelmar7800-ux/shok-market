@@ -3,188 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mağazalar - Şok Market</title>
-
+<title>Mağazalar - ŞOK Market</title>
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial, sans-serif;
-}
-
-body{
-  background:#111;
-  color:white;
-  overflow-x:hidden;
-}
+*{margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif;}
+body{background:#111;color:white;overflow-x:hidden;}
 
 /* HEADER */
-header{
-  background:#ffd000;
-  padding:20px 5%;
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
-
-.menu-btn{
-  font-size:28px;
-  cursor:pointer;
-  color:black;
-}
-
-.logo{
-  font-size:28px;
-  font-weight:bold;
-  color:black;
-}
+header{display:flex; justify-content:center; align-items:center; padding:20px 5%; position:relative; background:#ffd000;}
+.logo{font-size:28px; font-weight:bold; color:black;}
+.menu-btn{position:absolute; left:20px; top:50%; transform:translateY(-50%); font-size:28px; cursor:pointer; color:black;}
 
 /* SIDEBAR */
-.sidebar{
-  position:fixed;
-  top:0;
-  left:0;
-  width:260px;
-  height:100%;
-  background:#1a1a1a;
-  padding-top:80px;
-  transform:translateX(-100%);
-  transition:0.4s ease;
-  z-index:2000;
-}
-
-.sidebar.active{
-  transform:translateX(0);
-}
-
-.sidebar a{
-  display:block;
-  padding:18px 25px;
-  color:#ffd000;
-  text-decoration:none;
-  font-size:18px;
-}
-
-.sidebar a:hover{
-  background:#ffd000;
-  color:black;
-}
+.sidebar{position:fixed; top:0; left:0; width:260px; height:100%; background:#1a1a1a; padding-top:80px; transform:translateX(-100%); transition:0.4s ease; z-index:2000;}
+.sidebar.active{transform:translateX(0);}
+.sidebar a{display:block; padding:18px 25px; color:#ffd000; text-decoration:none; font-size:18px; transition:0.3s;}
+.sidebar a:hover{background:#ffd000; color:black;}
 
 /* OVERLAY */
-.overlay{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.6);
-  opacity:0;
-  visibility:hidden;
-  transition:0.3s;
-  z-index:1500;
-}
-
-.overlay.active{
-  opacity:1;
-  visibility:visible;
-}
+.overlay{position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); opacity:0; visibility:hidden; transition:0.3s; z-index:1500;}
+.overlay.active{opacity:1; visibility:visible;}
 
 /* STORES */
-.stores{
-  padding:80px 5%;
-  text-align:center;
-}
-
-.stores h2{
-  font-size:35px;
-  margin-bottom:50px;
-  color:#ffd000;
-}
-
-.store-card{
-  display:inline-block;
-  width:280px;
-  background:#222;
-  margin:20px;
-  padding:20px;
-  border-radius:20px;
-  box-shadow:0 15px 30px rgba(0,0,0,0.5);
-  transition:0.4s;
-}
-
-.store-card:hover{
-  transform:translateY(-15px) scale(1.05);
-}
-
-.store-card img{
-  width:100%;
-  border-radius:15px;
-}
-
-.store-card h3{
-  color:#ffd000;
-  margin-top:15px;
-}
+section{padding:80px 5%; text-align:center;}
+h2{color:#ffd000; margin-bottom:20px;}
+.store-container{display:flex; flex-wrap:wrap; justify-content:center; gap:20px;}
+.store-card{background:#222; width:260px; border-radius:20px; padding:15px; box-shadow:0 10px 20px rgba(0,0,0,0.5); transition:0.3s;}
+.store-card:hover{transform:translateY(-6px);}
+.store-card img{width:100%; border-radius:15px;}
+.store-card h3{color:#ffd000; margin-top:12px;}
+.store-card p{color:#ccc;}
 
 /* FOOTER */
-footer{
-  background:black;
-  color:#ffd000;
-  text-align:center;
-  padding:20px;
-}
+footer{background:black; color:#ffd000; text-align:center; padding:20px;}
 
-/* MOBİL */
-@media(max-width:600px){
-  .store-card{
-    width:100%;
-    margin:10px 0;
-  }
+/* RESPONSIVE */
+@media(max-width:768px){
+    h2{font-size:24px;}
+    .store-card{width:45%;}
+}
+@media(max-width:480px){
+    .store-card{width:100%;}
 }
 </style>
-</head><link rel="stylesheet" href="style.css">
+</head>
 <body>
 
 <!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
-  <a href="about.html">Haqqımızda</a>
+  <a href="index.html">Ana səhifə</a>
   <a href="products.html">Endirimlər</a>
-  <a href="stores.html">Mağazalar</a>
+  <a href="about.html">Haqqımızda</a>
 </div>
-
 <div class="overlay" id="overlay"></div>
 
 <header>
-  <div class="menu-btn" id="menuBtn">☰</div>
-  <div class="logo">ŞOK MARKET</div>
+    <div class="menu-btn" id="menuBtn">☰</div>
+    <div class="logo">ŞOK MARKET</div>
 </header>
 
-<section class="stores">
-  <h2>Mağazalarımız</h2>
-
-  <div class="store-card">
-    <img src="https://via.placeholder.com/280x180?text=Bakı+Mağaza" alt="Bakı Mağaza">
-    <h3>Bakı Mağaza</h3>
-    <p>Ünvan: Nizami küçəsi 25</p>
-  </div>
-
-  <div class="store-card">
-    <img src="https://via.placeholder.com/280x180?text=Gəncə+Mağaza" alt="Gəncə Mağaza">
-    <h3>Gəncə Mağaza</h3>
-    <p>Ünvan: Nizami prospekti 10</p>
-  </div>
-
-  <div class="store-card">
-    <img src="https://via.placeholder.com/280x180?text=Sumqayıt+Mağaza" alt="Sumqayıt Mağaza">
-    <h3>Sumqayıt Mağaza</h3>
-    <p>Ünvan: Heydər Əliyev prospekti 5</p>
-  </div>
-
+<section>
+    <h2>Mağazalarımız</h2>
+    <div class="store-container">
+        <div class="store-card">
+            <img src="https://via.placeholder.com/260x150?text=Bakı" alt="Bakı Mağaza">
+            <h3>Bakı Mağaza</h3>
+            <p>Ünvan: Nizami küçəsi 25</p>
+        </div>
+        <div class="store-card">
+            <img src="https://via.placeholder.com/260x150?text=Gəncə" alt="Gəncə Mağaza">
+            <h3>Gəncə Mağaza</h3>
+            <p>Ünvan: Nizami prospekti 10</p>
+        </div>
+        <div class="store-card">
+            <img src="https://via.placeholder.com/260x150?text=Sumqayıt" alt="Sumqayıt Mağaza">
+            <h3>Sumqayıt Mağaza</h3>
+            <p>Ünvan: Heydər Əliyev prospekti 5</p>
+        </div>
+    </div>
 </section>
 
 <footer>
-  © 2026 Şok Market | Bütün hüquqlar qorunur
+    © 2026 ŞOK Market | Bütün hüquqlar qorunur
 </footer>
 
 <script>
@@ -192,15 +91,14 @@ const menuBtn = document.getElementById("menuBtn");
 const sidebar = document.getElementById("sidebar");
 const overlay = document.getElementById("overlay");
 
-menuBtn.onclick = function(){
-    sidebar.classList.add("active");
-    overlay.classList.add("active");
-}
-
-overlay.onclick = function(){
+menuBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+});
+overlay.addEventListener("click", ()=>{
     sidebar.classList.remove("active");
     overlay.classList.remove("active");
-}
+});
 </script>
 
 </body>
