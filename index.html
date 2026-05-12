@@ -1,121 +1,271 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ŞOK MARKET</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <title>ŞOK Market</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <div class="sidebar" id="sidebar">
-    <a href="index.html">Ana səhifə</a>
-    <a href="products.html">Məhsullar</a>
-    <a href="about.html">Haqqımızda</a>
-    <a href="stores.html">Mağazalar</a>
-  </div>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">Ş</span>
+        <div class="brand-text">
+          <strong>ŞOK MARKET</strong>
+          <small>Premium supermarket experience</small>
+        </div>
+      </a>
 
-  <div class="overlay" id="overlay"></div>
+      <nav class="nav" id="navMenu">
+        <a href="index.html" class="active">Ana səhifə</a>
+        <a href="about.html">Haqqımızda</a>
+        <a href="products.html">Məhsullar</a>
+        <a href="campaigns.html">Kampaniyalar</a>
+        <a href="stores.html">Filiallar</a>
+        <a href="contact.html">Əlaqə</a>
+      </nav>
 
-  <header class="header">
-    <div class="menu-btn" id="menuBtn">&#9776;</div>
-    <div class="logo">ŞOK MARKET</div>
-    <nav class="desktop-nav">
-      <a href="index.html">Ana səhifə</a>
-      <a href="products.html">Məhsullar</a>
-      <a href="about.html">Haqqımızda</a>
-      <a href="stores.html">Mağazalar</a>
-    </nav>
+      <div class="nav-actions">
+        <a href="campaigns.html" class="btn btn-primary">Kampaniyalar</a>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+      </div>
+    </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <span class="hero-badge">BÖYÜK ENDİRİM</span>
-      <h1>Böyük Endirim Kampaniyası</h1>
-      <p>Ən sərfəli qiymətlər burada. Keyfiyyətli məhsullar, güclü xidmət və qəşəng dizayn bir arada.</p>
-      <div class="hero-buttons">
-        <a href="products.html" class="btn btn-yellow">Alışa Başla</a>
-        <a href="about.html" class="btn btn-dark">Ətraflı Bax</a>
+  <section class="page-hero hero-home">
+    <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1604719312566-8912e9c8a213?auto=format&fit=crop&w=1800&q=80')"></div>
+    <div class="page-hero-overlay"></div>
+
+    <div class="container hero-content">
+      <div class="hero-left reveal">
+        <span class="section-chip">• ŞOK Market-ə xoş gəlmisiniz</span>
+        <h1>Daha rahat, daha premium, daha sərfəli market təcrübəsi</h1>
+        <p>
+          Təzə məhsullar, seçilmiş kampaniyalar, müasir mağaza görünüşü və
+          ailəniz üçün gündəlik rahat alış-veriş bir arada.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="products.html" class="btn btn-primary">Məhsullara bax</a>
+          <a href="contact.html" class="btn btn-secondary">Əlaqə saxla</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="glass-mini">
+            <strong>1200+</strong>
+            <span>Məhsul</span>
+          </div>
+          <div class="glass-mini">
+            <strong>15+</strong>
+            <span>Filial</span>
+          </div>
+          <div class="glass-mini">
+            <strong>24/7</strong>
+            <span>Xidmət</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal delay-1">
+        <div class="glass-panel">
+          <div class="glass-top">
+            <span class="glass-dot"></span>
+            <span class="glass-dot"></span>
+            <span class="glass-dot"></span>
+          </div>
+          <div class="hero-card-image">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80" alt="">
+          </div>
+          <div class="hero-card-content">
+            <span class="tag">Premium görünüş</span>
+            <h3>Modern supermarket havası</h3>
+            <p>Glass UI, yumşaq blur və premium kartlarla müasir market təqdimatı.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="info-strip">
+    <div class="container info-strip-grid reveal">
+      <div class="strip-card"><span>✦</span><p>Təzə məhsullar</p></div>
+      <div class="strip-card"><span>✦</span><p>Gündəlik kampaniyalar</p></div>
+      <div class="strip-card"><span>✦</span><p>Rahat alış-veriş</p></div>
+      <div class="strip-card"><span>✦</span><p>Premium görünüş</p></div>
+    </div>
+  </section>
+
+  <section class="section about-section">
+    <div class="container two-col">
+      <div class="image-stack reveal">
+        <div class="glass-image big">
+          <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1000&q=80" alt="">
+        </div>
+        <div class="glass-image small">
+          <img src="https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=900&q=80" alt="">
+        </div>
+      </div>
+
+      <div class="content-side reveal delay-1">
+        <span class="section-chip">• Haqqımızda</span>
+        <h2>ŞOK Market rahat və premium alış-veriş mədəniyyəti yaradır</h2>
+        <p>
+          Məqsədimiz gündəlik ehtiyacları sadəcə almaq yox, bunu keyfiyyətli,
+          müasir və xoş vizual təcrübəyə çevirməkdir.
+        </p>
+
+        <div class="glass-info-grid">
+          <div class="glass-info-card">
+            <div class="icon-box">✓</div>
+            <h4>Keyfiyyət</h4>
+            <p>Seçilmiş məhsullar və təzə gündəlik təminat.</p>
+          </div>
+          <div class="glass-info-card">
+            <div class="icon-box">★</div>
+            <h4>Komanda</h4>
+            <p>Gülərüz və rahat xidmət göstərən market heyəti.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="section-top">
-      <span class="mini-title">Xidmətlərimiz</span>
-      <h2>Nələri təqdim edirik</h2>
-    </div>
-
-    <div class="cards">
-      <div class="card">
-        <div class="card-icon">🛒</div>
-        <h3>Market Məhsulları</h3>
-        <p>Gündəlik istifadə üçün sərfəli və keyfiyyətli məhsullar.</p>
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-chip">• Seçilmiş bölmələr</span>
+        <h2>ŞOK Market-də gündəlik ehtiyaclar üçün hər şey bir yerdə</h2>
+        <p>Ərzaq, təmizlik, içkilər və sərfəli kampaniyalar.</p>
       </div>
 
-      <div class="card">
-        <div class="card-icon">🎁</div>
-        <h3>Kampaniyalar</h3>
-        <p>Xüsusi günlər və həftəlik endirim kampaniyaları.</p>
-      </div>
-
-      <div class="card">
-        <div class="card-icon">📍</div>
-        <h3>Mağazalar</h3>
-        <p>Filiallarımız və ünvanlarımızı rahat tapın.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section dark-section">
-    <div class="section-top center">
-      <span class="mini-title">Seçilmiş Bölmələr</span>
-      <h2>Ən çox baxılan hissələr</h2>
-    </div>
-
-    <div class="project-grid">
-      <div class="project-card">
-        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop" alt="Məhsullar">
-        <div class="project-overlay">
-          <h3>Məhsullar</h3>
-          <a href="products.html">Bax</a>
+      <div class="service-grid">
+        <div class="service-card reveal">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80" alt="">
+          <div class="service-top">
+            <h3>Ərzaq</h3>
+            <span>01</span>
+          </div>
+          <p>Gündəlik ehtiyaclar üçün zəngin məhsul seçimi.</p>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="Kampaniya">
-        <div class="project-overlay">
-          <h3>Kampaniyalar</h3>
-          <a href="products.html">Bax</a>
+        <div class="service-card reveal delay-1">
+          <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=1000&q=80" alt="">
+          <div class="service-top">
+            <h3>Meyvə və tərəvəz</h3>
+            <span>02</span>
+          </div>
+          <p>Təzə və keyfiyyətli gündəlik məhsullar.</p>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="https://images.unsplash.com/photo-1481437156560-3205f6a55735?q=80&w=1200&auto=format&fit=crop" alt="Filiallar">
-        <div class="project-overlay">
-          <h3>Filiallar</h3>
-          <a href="stores.html">Bax</a>
+        <div class="service-card reveal delay-2">
+          <img src="https://images.unsplash.com/photo-1579113800032-c38bd7635818?auto=format&fit=crop&w=1000&q=80" alt="">
+          <div class="service-top">
+            <h3>Kampaniyalar</h3>
+            <span>03</span>
+          </div>
+          <p>Həftəlik və aylıq xüsusi endirimlər.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <div>
-      <h3>ŞOK MARKET</h3>
-      <p>Keyfiyyətli məhsullar və sərfəli qiymətlər.</p>
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-chip">• Kampaniyalar</span>
+        <h2>Diqqət çəkən premium kampaniya blokları</h2>
+      </div>
+
+      <div class="campaign-grid">
+        <div class="campaign-card reveal">
+          <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1200&q=80" alt="">
+          <div class="campaign-overlay"></div>
+          <div class="campaign-content">
+            <span class="campaign-badge">-30%</span>
+            <h3>Həftəsonu endirimi</h3>
+            <p>Seçilmiş məhsullarda xüsusi qiymətlər</p>
+          </div>
+        </div>
+
+        <div class="campaign-card reveal delay-1">
+          <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80" alt="">
+          <div class="campaign-overlay"></div>
+          <div class="campaign-content">
+            <span class="campaign-badge alt">Yeni</span>
+            <h3>Bonus kampaniya</h3>
+            <p>Xüsusi təkliflər və üstünlüklər</p>
+          </div>
+        </div>
+
+        <div class="campaign-card reveal delay-2">
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80" alt="">
+          <div class="campaign-overlay"></div>
+          <div class="campaign-content">
+            <span class="campaign-badge">Top</span>
+            <h3>Ailə paketləri</h3>
+            <p>Toplu alış-veriş üçün sərfəli seçim</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div>
-      <h4>Səhifələr</h4>
-      <a href="index.html">Ana səhifə</a>
-      <a href="about.html">Haqqımızda</a>
-      <a href="products.html">Məhsullar</a>
-      <a href="stores.html">Mağazalar</a>
+  </section>
+
+  <section class="marquee-section">
+    <div class="marquee-track">
+      <span>✦ Premium supermarket</span>
+      <span>✦ Kampaniyalar</span>
+      <span>✦ Təzə məhsullar</span>
+      <span>✦ ŞOK Market</span>
+      <span>✦ Premium supermarket</span>
+      <span>✦ Kampaniyalar</span>
+      <span>✦ Təzə məhsullar</span>
+      <span>✦ ŞOK Market</span>
     </div>
-    <div>
-      <h4>Əlaqə</h4>
-      <p>+994 50 000 00 00</p>
-      <p>info@sokmarket.az</p>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="brand footer-brand">
+          <span class="brand-badge">Ş</span>
+          <div class="brand-text">
+            <strong>ŞOK MARKET</strong>
+            <small>Premium supermarket experience</small>
+          </div>
+        </div>
+        <p class="footer-text">Modern market havası, premium təqdimat və sərfəli alış-veriş.</p>
+      </div>
+
+      <div>
+        <h4>Keçidlər</h4>
+        <a href="index.html">Ana səhifə</a>
+        <a href="about.html">Haqqımızda</a>
+        <a href="products.html">Məhsullar</a>
+      </div>
+
+      <div>
+        <h4>Bölmələr</h4>
+        <a href="campaigns.html">Kampaniyalar</a>
+        <a href="stores.html">Filiallar</a>
+        <a href="contact.html">Əlaqə</a>
+      </div>
+
+      <div>
+        <h4>Abunə ol</h4>
+        <div class="subscribe-box">
+          <input type="email" placeholder="Email yaz" />
+          <button>➜</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© 2026 ŞOK Market. Bütün hüquqlar qorunur.</p>
     </div>
   </footer>
 

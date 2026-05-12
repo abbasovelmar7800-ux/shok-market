@@ -1,248 +1,179 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Endirimlər - ŞOK Market</title>
-<style>
-/* ===== RESET ===== */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-body{
-    background:#111;
-    color:white;
-    overflow-x:hidden;
-}
-
-/* ===== HEADER ===== */
-header{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px 5%;
-    position:relative;
-    background:#ffd000;
-}
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    color:black;
-}
-.menu-btn{
-    position:absolute;
-    left:20px;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:28px;
-    cursor:pointer;
-    color:black;
-}
-
-/* ===== SIDEBAR ===== */
-.sidebar{
-    position:fixed;
-    top:0;
-    left:0;
-    width:260px;
-    height:100%;
-    background:#1a1a1a;
-    padding-top:80px;
-    transform:translateX(-100%);
-    transition:0.4s ease;
-    z-index:2000;
-}
-.sidebar.active{
-    transform:translateX(0);
-}
-.sidebar a{
-    display:block;
-    padding:18px 25px;
-    color:#ffd000;
-    text-decoration:none;
-    font-size:18px;
-    transition:0.3s;
-}
-.sidebar a:hover{
-    background:#ffd000;
-    color:black;
-}
-
-/* ===== OVERLAY ===== */
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
-    opacity:0;
-    visibility:hidden;
-    transition:0.3s;
-    z-index:1500;
-}
-.overlay.active{
-    opacity:1;
-    visibility:visible;
-}
-
-/* ===== SECTION ===== */
-section{
-    padding:80px 5%;
-    text-align:center;
-}
-h1,h2{
-    color:#ffd000;
-    margin-bottom:20px;
-}
-p{
-    font-size:16px;
-    line-height:1.6;
-    margin-bottom:15px;
-}
-
-/* ===== PRODUCTS ===== */
-.product-container{
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap:20px;
-    max-width:1000px;
-    margin:0 auto;
-}
-
-.product-card{
-    background:#1e1e1e;
-    border-radius:15px;
-    padding:15px;
-    position:relative;
-    transition:0.3s;
-}
-.product-card:hover{
-    transform:translateY(-6px);
-}
-.product-card img{
-    width:100%;
-    height:170px;
-    object-fit:cover;
-    border-radius:10px;
-}
-.product-card h3{
-    margin:12px 0 8px;
-    color:#ffd000;
-}
-.product-card p{
-    color:#ccc;
-}
-.old-price{
-    text-decoration: line-through;
-    color: gray;
-    margin-right: 8px;
-}
-.new-price{
-    color: red;
-    font-weight:bold;
-    font-size:16px;
-}
-.discount-badge{
-    position:absolute;
-    top:10px;
-    left:10px;
-    background:red;
-    color:white;
-    padding:5px 8px;
-    font-size:12px;
-    font-weight:bold;
-    border-radius:6px;
-}
-
-/* ===== FOOTER ===== */
-footer{
-    background:black;
-    color:#ffd000;
-    text-align:center;
-    padding:20px;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-    h1,h2{font-size:24px;}
-    p{font-size:14px;}
-    .product-container{
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    }
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <title>Məhsullar | ŞOK Market</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-  <a href="index.html">Ana səhifə</a>
-  <a href="about.html">Haqqımızda</a>
-  <a href="stores.html">Mağazalar</a>
-</div>
-<div class="overlay" id="overlay"></div>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">Ş</span>
+        <div class="brand-text">
+          <strong>ŞOK MARKET</strong>
+          <small>Premium supermarket experience</small>
+        </div>
+      </a>
 
-<header>
-    <div class="menu-btn" id="menuBtn">☰</div>
-    <div class="logo">ŞOK MARKET</div>
-</header>
+      <nav class="nav" id="navMenu">
+        <a href="index.html">Ana səhifə</a>
+        <a href="about.html">Haqqımızda</a>
+        <a href="products.html" class="active">Məhsullar</a>
+        <a href="campaigns.html">Kampaniyalar</a>
+        <a href="stores.html">Filiallar</a>
+        <a href="contact.html">Əlaqə</a>
+      </nav>
 
-<section>
-    <h2>Endirimdə olan məhsullar</h2>
-    <div class="product-container">
-        <!-- Example Product 1 -->
-        <div class="product-card">
-            <div class="discount-badge">-20%</div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAySI4Hth4TcKc38y74pN05t_gD0_487J0MxX57Hggch1QTTB93KWCYJd1V0qRgcmQi9nHFF8qKJ0aURxd8jRhS1KBEJ_YRHMGwH69TCgSvQ&s=10" alt="Coca Cola">
-            <h3>Coca Cola</h3>
-            <p><span class="old-price">2.60 AZN</span><span class="new-price">1.99 AZN</span></p>
-        </div>
-        <!-- Example Product 2 -->
-        <div class="product-card">
-            <div class="discount-badge">-25%</div>
-            <img src="data:image/jpeg;base64,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" alt="Fanta">
-            <h3>Fanta Portaqal 1lt</h3>
-            <p><span class="old-price">1.20 AZN</span><span class="new-price">0.95 AZN</span></p>
-        </div>
-        <!-- Example Product 3 -->
-        <div class="product-card">
-            <div class="discount-badge">-20%</div>
-            <img src="https://bazarstore.az/cdn/shop/files/47be3bef7af8514e92d1556575edd3ce.jpg?v=1719482764" alt="Peçenye">
-            <h3>Peçenye</h3>
-            <p><span class="old-price">3.00 AZN</span><span class="new-price">2.40 AZN</span></p>
-        </div>
-        <!-- Example Product 4 -->
-        <div class="product-card">
-            <div class="discount-badge">-15%</div>
-            <img src="https://bazarstore.az/cdn/shop/products/10000280_612fb88d-f92e-44f0-a90b-fb8aa997e81f.jpg?v=1693295893" alt="Məhsul">
-            <h3>Final Qardali yagi 5lt</h3>
-            <p><span class="old-price">4.00 AZN</span><span class="new-price">3.40 AZN</span></p>
-        </div>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary">Əlaqə</a>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+      </div>
     </div>
-</section>
+  </header>
 
-<footer>
-    © 2026 ŞOK Market | Bütün hüquqlar qorunur
-</footer>
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1800&q=80')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="container hero-content reveal">
+      <span class="section-chip">• Məhsullar</span>
+      <h1>Gündəlik ehtiyaclar üçün hər şey bir yerdə</h1>
+      <p>Ərzaq, içki, təmizlik, şirniyyat və daha çox.</p>
+    </div>
+  </section>
 
-<script>
-const menuBtn = document.getElementById("menuBtn");
-const sidebar = document.getElementById("sidebar");
-const overlay = document.getElementById("overlay");
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-chip">• Kateqoriyalar</span>
+        <h2>ŞOK Market üçün seçilmiş məhsul bölmələri</h2>
+      </div>
 
-menuBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("active");
-    overlay.classList.toggle("active");
-});
-overlay.addEventListener("click", ()=>{
-    sidebar.classList.remove("active");
-    overlay.classList.remove("active");
-});
-</script>
+      <div class="product-grid" id="productsContainer"></div>
+    </div>
+  </section>
 
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© 2026 ŞOK Market. Bütün hüquqlar qorunur.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    const productsContainer = document.getElementById("productsContainer");
+    const adminProducts = JSON.parse(localStorage.getItem("shok_products")) || [];
+
+    const defaultProducts = [
+      {
+        title: "Ərzaq",
+        number: "01",
+        desc: "Gündəlik istifadə üçün əsas ərzaq məhsulları.",
+        price: "Seçilmiş bölmə",
+        image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        title: "Meyvə və tərəvəz",
+        number: "02",
+        desc: "Təzə və gündəlik yenilənən məhsul vitrinləri.",
+        price: "Fresh seçim",
+        image: "https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        title: "İçkilər",
+        number: "03",
+        desc: "Sərinləşdirici və gündəlik seçilən içki kateqoriyası.",
+        price: "Top seçim",
+        image: "https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        title: "Şirniyyat",
+        number: "04",
+        desc: "Şirin və sevilən məhsullar üçün xüsusi bölmə.",
+        price: "Sevilənlər",
+        image: "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        title: "Təmizlik",
+        number: "05",
+        desc: "Ev üçün təmizlik məhsullarının səliqəli seçimi.",
+        price: "Ev üçün",
+        image: "https://images.unsplash.com/photo-1583947582886-f40ec95dd752?auto=format&fit=crop&w=1000&q=80"
+      },
+      {
+        title: "Uşaq məhsulları",
+        number: "06",
+        desc: "Uşaq üçün gündəlik rahat və faydalı seçimlər.",
+        price: "Ailə üçün",
+        image: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1000&q=80"
+      }
+    ];
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function renderDefaultProducts() {
+      productsContainer.innerHTML = "";
+
+      defaultProducts.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "product-card reveal active";
+
+        card.innerHTML = `
+          <img src="${item.image}" alt="">
+          <div class="product-top">
+            <h3>${item.title}</h3>
+            <span>${item.number}</span>
+          </div>
+          <p>${item.desc}</p>
+          <span class="product-price">${item.price}</span>
+        `;
+
+        productsContainer.appendChild(card);
+      });
+    }
+
+    function renderAdminProducts() {
+      productsContainer.innerHTML = "";
+
+      adminProducts.forEach((item, index) => {
+        const safeTitle = escapeHtml(item.title || "");
+        const safeDesc = escapeHtml(item.desc || "");
+        const safePrice = escapeHtml(item.price || "");
+        const safeCategory = escapeHtml(item.category || "Məhsul");
+        const safeImage = escapeHtml(item.image || "");
+
+        const card = document.createElement("div");
+        card.className = "product-card reveal active";
+
+        card.innerHTML = `
+          <img src="${safeImage}" alt="${safeTitle}">
+          <div class="product-top">
+            <h3>${safeTitle}</h3>
+            <span>${String(index + 1).padStart(2, "0")}</span>
+          </div>
+          <p>${safeDesc}</p>
+          <span class="product-price">${safePrice}</span>
+        `;
+
+        productsContainer.appendChild(card);
+      });
+    }
+
+    if (adminProducts.length > 0) {
+      renderAdminProducts();
+    } else {
+      renderDefaultProducts();
+    }
+  </script>
 </body>
 </html>

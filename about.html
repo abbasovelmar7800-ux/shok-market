@@ -1,168 +1,118 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Haqqımızda - ŞOK Market</title>
-<style>
-/* ===== RESET ===== */
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-body{
-    background:#111;
-    color:white;
-    overflow-x:hidden;
-}
-
-/* ===== HEADER ===== */
-header{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px 5%;
-    position:relative;
-    background:#ffd000;
-}
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    color:black;
-}
-.menu-btn{
-    position:absolute;
-    left:20px;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:28px;
-    cursor:pointer;
-    color:black;
-}
-
-/* ===== SIDEBAR ===== */
-.sidebar{
-    position:fixed;
-    top:0;
-    left:0;
-    width:260px;
-    height:100%;
-    background:#1a1a1a;
-    padding-top:80px;
-    transform:translateX(-100%);
-    transition:0.4s ease;
-    z-index:2000;
-}
-.sidebar.active{
-    transform:translateX(0);
-}
-.sidebar a{
-    display:block;
-    padding:18px 25px;
-    color:#ffd000;
-    text-decoration:none;
-    font-size:18px;
-    transition:0.3s;
-}
-.sidebar a:hover{
-    background:#ffd000;
-    color:black;
-}
-
-/* ===== OVERLAY ===== */
-.overlay{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
-    opacity:0;
-    visibility:hidden;
-    transition:0.3s;
-    z-index:1500;
-}
-.overlay.active{
-    opacity:1;
-    visibility:visible;
-}
-
-/* ===== SECTION ===== */
-section{
-    padding:80px 5%;
-    text-align:center;
-}
-h1,h2{
-    color:#ffd000;
-    margin-bottom:20px;
-}
-p{
-    font-size:16px;
-    line-height:1.6;
-    margin-bottom:15px;
-}
-
-/* ===== FOOTER ===== */
-footer{
-    background:black;
-    color:#ffd000;
-    text-align:center;
-    padding:20px;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-    h1,h2{font-size:24px;}
-    p{font-size:14px;}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <title>Haqqımızda | ŞOK Market</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar" id="sidebar">
-  <a href="index.html">Ana səhifə</a>
-  <a href="products.html">Endirimlər</a>
-  <a href="stores.html">Mağazalar</a>
-</div>
-<div class="overlay" id="overlay"></div>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">Ş</span>
+        <div class="brand-text">
+          <strong>ŞOK MARKET</strong>
+          <small>Premium supermarket experience</small>
+        </div>
+      </a>
 
-<header>
-    <div class="menu-btn" id="menuBtn">☰</div>
-    <div class="logo">ŞOK MARKET</div>
-</header>
+      <nav class="nav" id="navMenu">
+        <a href="index.html">Ana səhifə</a>
+        <a href="about.html" class="active">Haqqımızda</a>
+        <a href="products.html">Məhsullar</a>
+        <a href="campaigns.html">Kampaniyalar</a>
+        <a href="stores.html">Filiallar</a>
+        <a href="contact.html">Əlaqə</a>
+      </nav>
 
-<section>
-    <h2>Haqqımızda</h2>
-    <p>
-        ŞOK Market, şirkət rəhbəri <strong>Elvin Qasımov</strong> tərəfindən yaradılmışdır. 
-        Məqsədimiz müştərilərimizə ən sərfəli qiymətlərlə keyfiyyətli məhsullar təqdim etməkdir.
-    </p>
-    <p>
-        Endirim kampaniyaları, müştəri məmnuniyyəti və geniş mağaza şəbəkəsi ilə xidmətinizdəyik.
-    </p>
-</section>
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary">Əlaqə</a>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+      </div>
+    </div>
+  </header>
 
-<footer>
-    © 2026 ŞOK Market | Bütün hüquqlar qorunur
-</footer>
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1800&q=80')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="container hero-content reveal">
+      <span class="section-chip">• Haqqımızda</span>
+      <h1>ŞOK Market keyfiyyət və rahatlıqla formalaşan supermarket təcrübəsi yaradır</h1>
+      <p>Gündəlik ehtiyacları premium supermarket havası ilə təqdim edirik.</p>
+    </div>
+  </section>
 
-<script>
-const menuBtn = document.getElementById("menuBtn");
-const sidebar = document.getElementById("sidebar");
-const overlay = document.getElementById("overlay");
+  <section class="section about-section">
+    <div class="container two-col">
+      <div class="image-stack reveal">
+        <div class="glass-image big">
+          <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=1000&q=80" alt="">
+        </div>
+        <div class="glass-image small">
+          <img src="https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=900&q=80" alt="">
+        </div>
+      </div>
 
-menuBtn.addEventListener("click", ()=>{
-    sidebar.classList.toggle("active");
-    overlay.classList.toggle("active");
-});
-overlay.addEventListener("click", ()=>{
-    sidebar.classList.remove("active");
-    overlay.classList.remove("active");
-});
-</script>
+      <div class="content-side reveal delay-1">
+        <span class="section-chip">• Biz kimik</span>
+        <h2>Hər gün ailələrin seçdiyi rahat və müasir market modeli</h2>
+        <p>
+          ŞOK Market ailə büdcəsinə uyğun, təmiz, rahat və vizual olaraq premium
+          supermarket anlayışını qurur. Hər filialda kampaniyalar, düzgün məhsul
+          düzülüşü və müştəri rahatlığı əsas prioritetimizdir.
+        </p>
 
+        <div class="glass-info-grid">
+          <div class="glass-info-card">
+            <div class="icon-box">✓</div>
+            <h4>Missiyamız</h4>
+            <p>Gündəlik alış-verişi daha rahat və daha keyfiyyətli etmək.</p>
+          </div>
+          <div class="glass-info-card">
+            <div class="icon-box">★</div>
+            <h4>Vizyonumuz</h4>
+            <p>Premium supermarket təcrübəsində seçilən yerli brend olmaq.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-chip">• Dəyərlərimiz</span>
+        <h2>Etibar, rahatlıq, keyfiyyət və yenilik</h2>
+      </div>
+
+      <div class="store-grid">
+        <div class="store-card reveal">
+          <h3>Keyfiyyət</h3>
+          <p>Təzə və düzgün seçilmiş məhsulların təqdimatı.</p>
+        </div>
+        <div class="store-card reveal delay-1">
+          <h3>Rahatlıq</h3>
+          <p>Müştəri üçün asan seçim və rahat mağaza mühiti.</p>
+        </div>
+        <div class="store-card reveal delay-2">
+          <h3>İnnovasiya</h3>
+          <p>Modern dizayn, kampaniya və təqdimat sistemi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© 2026 ŞOK Market. Bütün hüquqlar qorunur.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

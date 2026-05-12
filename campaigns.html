@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <title>Kampaniyalar | ŞOK Market</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">Ş</span>
+        <div class="brand-text">
+          <strong>ŞOK MARKET</strong>
+          <small>Premium supermarket experience</small>
+        </div>
+      </a>
+
+      <nav class="nav" id="navMenu">
+        <a href="index.html">Ana səhifə</a>
+        <a href="about.html">Haqqımızda</a>
+        <a href="products.html">Məhsullar</a>
+        <a href="campaigns.html" class="active">Kampaniyalar</a>
+        <a href="stores.html">Filiallar</a>
+        <a href="contact.html">Əlaqə</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="contact.html" class="btn btn-primary">Əlaqə</a>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image:url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1800&q=80')"></div>
+    <div class="page-hero-overlay"></div>
+    <div class="container hero-content reveal">
+      <span class="section-chip">• Kampaniyalar</span>
+      <h1>Seçilmiş kampaniyalar və sərfəli təkliflər</h1>
+      <p>Həftəlik, aylıq və xüsusi premium təqdimatlı endirimlər.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="campaign-grid" id="campaignsContainer"></div>
+    </div>
+  </section>
+
+  <section class="marquee-section">
+    <div class="marquee-track">
+      <span>✦ Endirimlər</span>
+      <span>✦ Kampaniyalar</span>
+      <span>✦ Ailə paketləri</span>
+      <span>✦ Fresh məhsullar</span>
+      <span>✦ ŞOK Market</span>
+      <span>✦ Endirimlər</span>
+      <span>✦ Kampaniyalar</span>
+      <span>✦ Ailə paketləri</span>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© 2026 ŞOK Market. Bütün hüquqlar qorunur.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    const campaignsContainer = document.getElementById("campaignsContainer");
+    const adminCampaigns = JSON.parse(localStorage.getItem("shok_campaigns")) || [];
+
+    const defaultCampaigns = [
+      {
+        title: "Həftəsonu endirimi",
+        badge: "-30%",
+        desc: "Seçilmiş məhsullarda xüsusi qiymətlər",
+        image: "https://images.unsplash.com/photo-1579113800032-c38bd7635818?auto=format&fit=crop&w=1200&q=80",
+        alt: false
+      },
+      {
+        title: "Bonus kampaniya",
+        badge: "Yeni",
+        desc: "Xüsusi təkliflər və üstünlüklər",
+        image: "https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=1200&q=80",
+        alt: true
+      },
+      {
+        title: "Ailə paketləri",
+        badge: "Top",
+        desc: "Toplu alış-veriş üçün sərfəli seçim",
+        image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80",
+        alt: false
+      },
+      {
+        title: "Təzə məhsul günləri",
+        badge: "Fresh",
+        desc: "Meyvə və tərəvəzdə xüsusi kampaniyalar",
+        image: "https://images.unsplash.com/photo-1604719312566-8912e9c8a213?auto=format&fit=crop&w=1200&q=80",
+        alt: true
+      },
+      {
+        title: "Günlük təkliflər",
+        badge: "Endirim",
+        desc: "Hər gün yenilənən sərfəli seçimlər",
+        image: "https://images.unsplash.com/photo-1561715276-a2d087060f1d?auto=format&fit=crop&w=1200&q=80",
+        alt: false
+      },
+      {
+        title: "Sezon kampaniyası",
+        badge: "Top",
+        desc: "Fərqli məhsullarda premium təqdimat",
+        image: "https://images.unsplash.com/photo-1516594798947-e65505dbb29d?auto=format&fit=crop&w=1200&q=80",
+        alt: true
+      }
+    ];
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function renderDefaultCampaigns() {
+      campaignsContainer.innerHTML = "";
+
+      defaultCampaigns.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "campaign-card reveal active";
+
+        card.innerHTML = `
+          <img src="${item.image}" alt="">
+          <div class="campaign-overlay"></div>
+          <div class="campaign-content">
+            <span class="campaign-badge ${item.alt ? "alt" : ""}">${item.badge}</span>
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+          </div>
+        `;
+
+        campaignsContainer.appendChild(card);
+      });
+    }
+
+    function renderAdminCampaigns() {
+      campaignsContainer.innerHTML = "";
+
+      adminCampaigns.forEach((item) => {
+        const safeTitle = escapeHtml(item.title || "");
+        const safeBadge = escapeHtml(item.badge || "");
+        const safeDesc = escapeHtml(item.desc || "");
+        const safeImage = escapeHtml(item.image || "");
+        const safeStatus = (item.status || "").toLowerCase();
+
+        const isAlt =
+          safeStatus.includes("göz") ||
+          safeStatus.includes("bit") ||
+          safeBadge.toLowerCase().includes("yeni");
+
+        const card = document.createElement("div");
+        card.className = "campaign-card reveal active";
+
+        card.innerHTML = `
+          <img src="${safeImage}" alt="${safeTitle}">
+          <div class="campaign-overlay"></div>
+          <div class="campaign-content">
+            <span class="campaign-badge ${isAlt ? "alt" : ""}">${safeBadge}</span>
+            <h3>${safeTitle}</h3>
+            <p>${safeDesc}</p>
+          </div>
+        `;
+
+        campaignsContainer.appendChild(card);
+      });
+    }
+
+    if (adminCampaigns.length > 0) {
+      renderAdminCampaigns();
+    } else {
+      renderDefaultCampaigns();
+    }
+  </script>
+</body>
+</html>
