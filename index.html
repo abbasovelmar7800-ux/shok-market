@@ -1,53 +1,124 @@
 <!DOCTYPE html>
 <html lang="az">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ŞOK MARKET</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ŞOK MARKET</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="sidebar" id="sidebar">
-  <a href="index.html">Ana səhifə</a>
-  <a href="products.html">Endirimlər</a>
-  <a href="about.html">Haqqımızda</a>
-  <a href="stores.html">Mağazalar</a>
-</div>
-<div class="overlay" id="overlay"></div>
-
-<header>
-  <div class="menu-btn" id="menuBtn">☰</div>
-  <div class="logo">ŞOK MARKET</div>
-</header>
-
-<section class="hero">
-  <div>
-    <h1>Böyük Endirim Kampaniyası</h1>
-    <p>Ən sərfəli qiymətlər burada</p>
-    <a href="products.html"><button>Alışa Başla</button></a>
+  <div class="sidebar" id="sidebar">
+    <a href="index.html">Ana səhifə</a>
+    <a href="products.html">Məhsullar</a>
+    <a href="about.html">Haqqımızda</a>
+    <a href="stores.html">Mağazalar</a>
   </div>
-</section>
 
-<footer>
-  © 2026 ŞOK MARKET | Bütün hüquqlar qorunur
-</footer>
+  <div class="overlay" id="overlay"></div>
 
-<script>
-const menuBtn = document.getElementById("menuBtn");
-const sidebar = document.getElementById("sidebar");
-const overlay = document.getElementById("overlay");
+  <header class="header">
+    <div class="menu-btn" id="menuBtn">&#9776;</div>
+    <div class="logo">ŞOK MARKET</div>
+    <nav class="desktop-nav">
+      <a href="index.html">Ana səhifə</a>
+      <a href="products.html">Məhsullar</a>
+      <a href="about.html">Haqqımızda</a>
+      <a href="stores.html">Mağazalar</a>
+    </nav>
+  </header>
 
-menuBtn.addEventListener("click", ()=>{
-  sidebar.classList.toggle("active");
-  overlay.classList.toggle("active");
-});
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">BÖYÜK ENDİRİM</span>
+      <h1>Böyük Endirim Kampaniyası</h1>
+      <p>Ən sərfəli qiymətlər burada. Keyfiyyətli məhsullar, güclü xidmət və qəşəng dizayn bir arada.</p>
+      <div class="hero-buttons">
+        <a href="products.html" class="btn btn-yellow">Alışa Başla</a>
+        <a href="about.html" class="btn btn-dark">Ətraflı Bax</a>
+      </div>
+    </div>
+  </section>
 
-overlay.addEventListener("click", ()=>{
-  sidebar.classList.remove("active");
-  overlay.classList.remove("active");
-});
-</script>
+  <section class="section">
+    <div class="section-top">
+      <span class="mini-title">Xidmətlərimiz</span>
+      <h2>Nələri təqdim edirik</h2>
+    </div>
 
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🛒</div>
+        <h3>Market Məhsulları</h3>
+        <p>Gündəlik istifadə üçün sərfəli və keyfiyyətli məhsullar.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎁</div>
+        <h3>Kampaniyalar</h3>
+        <p>Xüsusi günlər və həftəlik endirim kampaniyaları.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📍</div>
+        <h3>Mağazalar</h3>
+        <p>Filiallarımız və ünvanlarımızı rahat tapın.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section dark-section">
+    <div class="section-top center">
+      <span class="mini-title">Seçilmiş Bölmələr</span>
+      <h2>Ən çox baxılan hissələr</h2>
+    </div>
+
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop" alt="Məhsullar">
+        <div class="project-overlay">
+          <h3>Məhsullar</h3>
+          <a href="products.html">Bax</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt="Kampaniya">
+        <div class="project-overlay">
+          <h3>Kampaniyalar</h3>
+          <a href="products.html">Bax</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <img src="https://images.unsplash.com/photo-1481437156560-3205f6a55735?q=80&w=1200&auto=format&fit=crop" alt="Filiallar">
+        <div class="project-overlay">
+          <h3>Filiallar</h3>
+          <a href="stores.html">Bax</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>
+      <h3>ŞOK MARKET</h3>
+      <p>Keyfiyyətli məhsullar və sərfəli qiymətlər.</p>
+    </div>
+    <div>
+      <h4>Səhifələr</h4>
+      <a href="index.html">Ana səhifə</a>
+      <a href="about.html">Haqqımızda</a>
+      <a href="products.html">Məhsullar</a>
+      <a href="stores.html">Mağazalar</a>
+    </div>
+    <div>
+      <h4>Əlaqə</h4>
+      <p>+994 50 000 00 00</p>
+      <p>info@sokmarket.az</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
