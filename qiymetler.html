@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qiymət bazası - ŞOK Market</title>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:linear-gradient(to right,#111,#222);
+    color:white;
+    min-height:100vh;
+}
+
+header{
+    background:#ffd400;
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+    color:black;
+}
+
+.back{
+    margin-left:auto;
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.container{
+    max-width:700px;
+    margin:0 auto;
+    padding:40px 20px;
+}
+
+h2{
+    color:#ffd400;
+    margin-bottom:10px;
+}
+
+.hint{
+    color:#aaa;
+    margin-bottom:30px;
+    line-height:1.5;
+}
+
+.dropzone{
+    border:3px dashed #ffd400;
+    border-radius:15px;
+    padding:50px 20px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.3s;
+    background:#1a1a1a;
+}
+
+.dropzone:hover, .dropzone.drag{
+    background:#252510;
+}
+
+.dropzone .big{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+#fileInput{ display:none; }
+
+.card{
+    background:#1e1e1e;
+    border-radius:15px;
+    padding:20px;
+    margin-top:25px;
+}
+
+.card h3{ color:#ffd400; margin-bottom:12px; }
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+}
+
+th, td{
+    padding:8px 10px;
+    text-align:left;
+    border-bottom:1px solid #333;
+}
+
+th{ color:#ffd400; }
+
+.num{ text-align:right; }
+
+.btn{
+    display:block;
+    width:100%;
+    margin-top:20px;
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    background:#ffd400;
+    color:black;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{ background:#e6c000; }
+
+.btn:disabled{
+    background:#555;
+    color:#999;
+    cursor:not-allowed;
+}
+
+.status{
+    margin-top:20px;
+    padding:16px;
+    border-radius:12px;
+    font-size:16px;
+    display:none;
+    line-height:1.5;
+}
+
+.status.ok{ display:block; background:#143d14; color:#8f8; }
+.status.err{ display:block; background:#4a1414; color:#f99; }
+.status.info{ display:block; background:#14304a; color:#9cf; }
+
+.spin{
+    display:inline-block;
+    width:16px;
+    height:16px;
+    border:3px solid #9cf;
+    border-top-color:transparent;
+    border-radius:50%;
+    animation:spin 0.8s linear infinite;
+    vertical-align:middle;
+    margin-right:8px;
+}
+
+@keyframes spin{ to{ transform:rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ŞOK MARKET</div>
+  <a class="back" href="index.html">← Ana səhifə</a>
+</header>
+
+<div class="container">
+  <h2>Qiymət bazasını yenilə</h2>
+  <p class="hint">
+    POS sistemindən çıxardığın <b>"Malların anbarlardakı qalığı"</b> Excel faylını (.xlsx) bura at.
+    Fayl oxunacaq, məhsul sayı göstəriləcək, təsdiq etdikdən sonra qiymətlər telefondakı
+    tətbiqin bazasına yazılacaq.
+  </p>
+
+  <div class="dropzone" id="dropzone">
+    <div class="big">📄</div>
+    <div><b>Excel faylını bura at</b> və ya kliklə seç</div>
+  </div>
+  <input type="file" id="fileInput" accept=".xlsx">
+
+  <div class="card" id="preview" style="display:none">
+    <h3 id="summary"></h3>
+    <table id="sampleTable">
+      <thead>
+        <tr><th>Barkod</th><th>Ad</th><th class="num">Qiymət</th><th class="num">Miqdar</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button class="btn" id="uploadBtn">Bazaya yüklə</button>
+  </div>
+
+  <div class="status" id="status"></div>
+</div>
+
+<script>
+const DB_URL = "https://sayimpro3-default-rtdb.firebaseio.com/qiymetler.json";
+
+const dropzone = document.getElementById("dropzone");
+const fileInput = document.getElementById("fileInput");
+const preview = document.getElementById("preview");
+const summary = document.getElementById("summary");
+const sampleBody = document.querySelector("#sampleTable tbody");
+const uploadBtn = document.getElementById("uploadBtn");
+const statusBox = document.getElementById("status");
+
+let parsed = null;
+
+dropzone.addEventListener("click", () => fileInput.click());
+dropzone.addEventListener("dragover", e => { e.preventDefault(); dropzone.classList.add("drag"); });
+dropzone.addEventListener("dragleave", () => dropzone.classList.remove("drag"));
+dropzone.addEventListener("drop", e => {
+  e.preventDefault();
+  dropzone.classList.remove("drag");
+  if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener("change", () => {
+  if (fileInput.files.length) handleFile(fileInput.files[0]);
+});
+
+function setStatus(cls, html) {
+  statusBox.className = "status " + cls;
+  statusBox.innerHTML = html;
+}
+
+// Azərbaycan hərflərini sadələşdirib müqayisə üçün normallaşdırır
+function norm(s) {
+  return String(s).toLowerCase()
+    .replace(/ş/g,"s").replace(/ı/g,"i").replace(/ə/g,"e").replace(/ö/g,"o")
+    .replace(/ü/g,"u").replace(/ç/g,"c").replace(/ğ/g,"g").replace(/i̇/g,"i")
+    .replace(/"/g,"").replace(/\s+/g,"");
+}
+
+function digitsOnly(v) {
+  let s = String(v == null ? "" : v).trim();
+  if (s.endsWith(".0")) s = s.slice(0, -2);
+  return s.replace(/[^0-9]/g, "");
+}
+
+function toNum(v) {
+  if (typeof v === "number") return v;
+  const n = parseFloat(String(v == null ? "" : v).replace(/\s/g,"").replace(",","."));
+  return isNaN(n) ? 0 : n;
+}
+
+// "Miqdar" sütunlarını özündən sonrakı "Satis" sütunu ilə cütləşdirir
+function findPairs(row) {
+  if (!row) return [];
+  const qtyCols = [], priceCols = [];
+  row.forEach((v, c) => {
+    const h = norm(v == null ? "" : v);
+    if (h === "miqdar") qtyCols.push(c);
+    else if (h.includes("satis")) priceCols.push(c);
+  });
+  const pairs = [];
+  qtyCols.forEach((q, i) => {
+    const end = i + 1 < qtyCols.length ? qtyCols[i + 1] : Infinity;
+    const p = priceCols.find(x => x > q && x < end);
+    if (p !== undefined) pairs.push([q, p]);
+  });
+  return pairs;
+}
+
+function parseSheet(rows) {
+  // Başlıq sətrini tap: "Ştrixkod" / "Barkod"
+  let headerIdx = -1, barcodeCol = 0;
+  for (let i = 0; i < Math.min(rows.length, 21); i++) {
+    const row = rows[i] || [];
+    for (let c = 0; c < row.length; c++) {
+      const h = norm(row[c] == null ? "" : row[c]);
+      if (h.includes("strixkod") || h.includes("barkod")) { headerIdx = i; barcodeCol = c; break; }
+    }
+    if (headerIdx >= 0) break;
+  }
+
+  let nameCol, pairs, dataStart;
+
+  if (headerIdx >= 0) {
+    const headerRow = rows[headerIdx] || [];
+    nameCol = headerRow.findIndex((v, c) => {
+      if (c === barcodeCol) return false;
+      const h = norm(v == null ? "" : v);
+      return ["mal","ad","adi","maladi","malinadi"].includes(h);
+    });
+    if (nameCol < 0) nameCol = barcodeCol === 1 ? 0 : 1;
+
+    const subPairs = findPairs(rows[headerIdx + 1]);
+    if (subPairs.length) {
+      // "Cəmi"/"Yekun" qrupu varsa, anbarları toplamaq əvəzinə yalnız onu götür
+      const totalPair = subPairs.find(([q]) => {
+        const g = norm(headerRow[q] == null ? "" : headerRow[q]);
+        return g.includes("cem") || g.includes("yekun");
+      });
+      pairs = totalPair ? [totalPair] : subPairs;
+      dataStart = headerIdx + 2;
+    } else {
+      const own = findPairs(headerRow);
+      pairs = own.length ? own : [[2, 3]];
+      dataStart = headerIdx + 1;
+    }
+  } else {
+    // Başlıqsız sadə format: A=Barkod, B=Ad, C=Miqdar, D=Satış cəmi
+    barcodeCol = 0; nameCol = 1; pairs = [[2, 3]]; dataStart = 0;
+  }
+
+  const products = {};
+  let count = 0;
+  for (let i = dataStart; i < rows.length; i++) {
+    const row = rows[i] || [];
+    const barcode = digitsOnly(row[barcodeCol]);
+    const name = String(row[nameCol] == null ? "" : row[nameCol]).trim();
+    if (!barcode || !name) continue;   // boş və "Cəmi" sətirləri
+
+    let qty = 0, total = 0;
+    for (const [m, s] of pairs) {
+      qty += Math.abs(toNum(row[m]));
+      total += Math.abs(toNum(row[s]));
+    }
+    if (qty === 0) continue;
+
+    if (!(barcode in products)) count++;
+    products[barcode] = {
+      ad: name,
+      qiymet: Math.round((total / qty) * 100) / 100,
+      miqdar: Math.round(qty * 1000) / 1000
+    };
+  }
+  return { products, count };
+}
+
+function handleFile(file) {
+  preview.style.display = "none";
+  parsed = null;
+  setStatus("info", '<span class="spin"></span>Fayl oxunur...');
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const wb = XLSX.read(new Uint8Array(e.target.result), { type: "array" });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: null });
+      const res = parseSheet(rows);
+      if (!res.count) {
+        setStatus("err", "Faylda məhsul tapılmadı — format uyğun deyil.");
+        return;
+      }
+      parsed = res;
+      summary.textContent = res.count + " məhsul tapıldı — " + file.name;
+      sampleBody.innerHTML = "";
+      Object.entries(res.products).slice(0, 5).forEach(([bc, p]) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = "<td>" + bc + "</td><td>" + p.ad.replace(/</g,"&lt;") +
+          '</td><td class="num">' + p.qiymet.toFixed(2) + ' ₼</td><td class="num">' + p.miqdar + "</td>";
+        sampleBody.appendChild(tr);
+      });
+      preview.style.display = "block";
+      statusBox.className = "status";
+      uploadBtn.disabled = false;
+    } catch (err) {
+      setStatus("err", "Excel oxunmadı — fayl .xlsx formatında olmalıdır.");
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+uploadBtn.addEventListener("click", async () => {
+  if (!parsed) return;
+  if (!confirm(parsed.count + " məhsul yüklənəcək.\nKöhnə qiymət bazası tam əvəz olunacaq. Davam?")) return;
+
+  uploadBtn.disabled = true;
+  setStatus("info", '<span class="spin"></span>Bazaya yazılır... (bir-iki dəqiqə çəkə bilər)');
+
+  const now = Date.now();
+  const body = {};
+  for (const [bc, p] of Object.entries(parsed.products)) {
+    body[bc] = { ad: p.ad, qiymet: p.qiymet, miqdar: p.miqdar, yenilenme: now };
+  }
+
+  try {
+    const resp = await fetch(DB_URL, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    if (!resp.ok) throw new Error("HTTP " + resp.status);
+    setStatus("ok", "✓ " + parsed.count + " məhsul bazaya yükləndi.<br>Telefondakı tətbiqdə qiymətlər artıq təzədir.");
+  } catch (err) {
+    setStatus("err", "Yüklənmədi — internetə bax və yenidən cəhd et. (" + err.message + ")");
+    uploadBtn.disabled = false;
+  }
+});
+</script>
+
+</body>
+</html>
